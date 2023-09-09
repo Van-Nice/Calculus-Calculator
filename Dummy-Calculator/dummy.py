@@ -11,13 +11,13 @@ def add_to_calculation(symbol):
 def evaluate_calculation():
     global calculation
     try:
-        result = str(eval(calculation))
+        calculation = str(eval(calculation))
         text_result.delete(1.0, "end")
         text_result.insert(1.0, calculation)
     except:
         clear_field()
         text_result.insert(1.0, "Error")
-        pass
+
 
 
 def clear_field():
@@ -26,11 +26,16 @@ def clear_field():
     text_result.delete(1.0, "end")
 
 root = tk.Tk()
-root.geometry("300x275")
+root.geometry("500x425")
 
 # set up grid
 text_result = tk.Text(root, height=2, width=16, font=("Arial", 24))
-text_result.grid()
+text_result.grid(columnspan=5)
+
+# First Row
+# Button /
+btn_divide = tk.Button(root, text="/", command=lambda: add_to_calculation("/"), width=5, font=("Arial", 14))
+btn_divide.grid(row=1, column=5)
 
 # Second Row
 
@@ -85,9 +90,20 @@ btn_0.grid(row=5, column=1)
 # Button .
 btn_decimal = tk.Button(root, text=".", command=lambda: add_to_calculation("."), width=5, font=("Arial", 14))
 btn_decimal.grid(row=5, column=2)
-# Button /
-btn_divide = tk.Button(root, text="/", command=lambda: add_to_calculation("/"), width=5, font=("Arial", 14))
-btn_divide.grid(row=1, column=4)
+# Button (
+btn_first_parenthesis = tk.Button(root, text="(", command=lambda: add_to_calculation("("), width=5, font=("Arial", 14))
+btn_first_parenthesis.grid(row=5, column=3)
+# Button )
+btn_second_parenthesis = tk.Button(root, text=")", command=lambda: add_to_calculation(")"), width=5, font=("Arial", 14))
+btn_second_parenthesis.grid(row=5, column=4)
+
+# Sixth Row
+# Button Clear
+btn_clear = tk.Button(root, text="CLEAR", command=clear_field, width=5, font=("Arial", 14))
+btn_clear.grid(row=6, column=1)
+# Button Equals
+btn_equals = tk.Button(root, text="=", command=evaluate_calculation, width=5, font=("Arial", 14))
+btn_equals.grid(row=6, column=2)
 
 
 root.mainloop()
