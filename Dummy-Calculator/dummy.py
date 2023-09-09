@@ -1,10 +1,12 @@
 import tkinter as tk
+import math
 
 calculation = ""
 
 def add_to_calculation(symbol):
     global calculation
     calculation += str(symbol)
+    print(calculation)
     text_result.delete(1.0, "end")
     text_result.insert(1.0, calculation)
 
@@ -35,8 +37,14 @@ text_result.grid(columnspan=5)
 # First Row
 # Button /
 btn_divide = tk.Button(root, text="/", command=lambda: add_to_calculation("/"), width=5, font=("Arial", 14))
-btn_divide.grid(row=1, column=5)
-
+btn_divide.grid(row=1, column=4)
+# Button ^
+btn_power_of = tk.Button(root, text="^", command=lambda: add_to_calculation("**"), width=5, font=("Arial", 14))
+btn_power_of.grid(row=1, column=1)
+# Button ln "Base e"
+# x=
+# btn_ln = tk.Button(root, text="ln", command=lambda: add_to_calculation(math.log(x)), width=5, font=("Arial", 14))
+# btn_ln.grid(row=1, column=2)
 # Second Row
 
 # Button 1
