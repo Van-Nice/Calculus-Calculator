@@ -1,9 +1,11 @@
 import tkinter as tk
 import math
 from sympy import *
-x, y, z = symbols("x y z")
+import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import latexify as lt
 
-init_printing(Integral(sqrt(1/x), x))
 
 # Constants
 PI = math.pi
@@ -11,10 +13,18 @@ E = math.e
 
 calculation = ""
 
+def get_calculation():
+    return calculation
+
+# live matplotlib section
+def live_calculation():
+    calculation_in_latex = lt.get_latex(get_calculation())
+    print(calculation_in_latex)
+    return calculation_in_latex
+
 def add_to_calculation(symbol):
     global calculation
     calculation += str(symbol)
-    print(calculation)
     text_result.delete(1.0, "end")
     text_result.insert(1.0, calculation)
 
@@ -126,6 +136,5 @@ btn_clear.grid(row=6, column=1)
 # Button Equals
 btn_equals = tk.Button(root, text="=", command=evaluate_calculation, width=5, font=("Arial", 14))
 btn_equals.grid(row=6, column=2)
-
 
 root.mainloop()
