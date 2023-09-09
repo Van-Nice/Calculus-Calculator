@@ -1,5 +1,13 @@
 import tkinter as tk
 import math
+from sympy import *
+x, y, z = symbols("x y z")
+
+init_printing(Integral(sqrt(1/x), x))
+
+# Constants
+PI = math.pi
+E = math.e
 
 calculation = ""
 
@@ -21,17 +29,18 @@ def evaluate_calculation():
         text_result.insert(1.0, "Error")
 
 
-
 def clear_field():
     global calculation
     calculation = ""
     text_result.delete(1.0, "end")
 
+# hashmap for output
+
 root = tk.Tk()
 root.geometry("500x425")
 
 # set up grid
-text_result = tk.Text(root, height=2, width=16, font=("Arial", 24))
+text_result = tk.Text(root, height=5, width=32, font=("Arial", 24))
 text_result.grid(columnspan=5)
 
 # First Row
@@ -42,9 +51,14 @@ btn_divide.grid(row=1, column=4)
 btn_power_of = tk.Button(root, text="^", command=lambda: add_to_calculation("**"), width=5, font=("Arial", 14))
 btn_power_of.grid(row=1, column=1)
 # Button ln "Base e"
-# x=
-# btn_ln = tk.Button(root, text="ln", command=lambda: add_to_calculation(math.log(x)), width=5, font=("Arial", 14))
-# btn_ln.grid(row=1, column=2)
+btn_ln = tk.Button(root, text="ln", command=lambda: add_to_calculation("math.log("), width=5, font=("Arial", 14))
+btn_ln.grid(row=1, column=2)
+# Button π
+btn_pi = tk.Button(root, text="π", command=lambda: add_to_calculation("π"), width=5, font=("Arial", 14))
+btn_pi.grid(row=1, column=3)
+# Button e
+btn_pi = tk.Button(root, text="e", command=lambda: add_to_calculation("math.e"), width=5, font=("Arial", 14))
+btn_pi.grid(row=1, column=4)
 # Second Row
 
 # Button 1
